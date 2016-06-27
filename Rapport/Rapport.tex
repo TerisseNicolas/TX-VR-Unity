@@ -6,6 +6,7 @@
 \usepackage{graphicx} % images management
 \usepackage{wrapfig} % floating images
 \usepackage{array} % allow arrays
+\usepackage[toc,page]{appendix}
 \usepackage{fancyhdr} % headers/footers management (overrides empty, plain and headings)
 \usepackage{listings} % code insertion (MUST BE WRITTEN AFTER BABEL)
 %\usepackage[nottoc,numbib]{tocbibind} % bib in toc
@@ -13,7 +14,6 @@
 \usepackage{enumitem} % for /setlist
 \usepackage{color,soul} % add some colors and hightlight
 \usepackage{xcolor} % more colors
-\usepackage[hyphens]{url} % auto break lines in URL
 \usepackage[hidelinks,  colorlinks  = true, % no borders, colors enabled
                         anchorcolor = blue,
                         linkcolor   = black, % links in table of contents
@@ -39,6 +39,10 @@
   title={{\setlength{\fboxsep}{1pt}\fcolorbox{orange}{yellow!20}{\sffamily\scriptsize
               \textcolor{gray!10}{\_}{#1}\textcolor{gray!10}{\_}}}}
   }
+}
+\addto\captionsfrench{%
+   \renewcommand{\appendixtocname}{Annexes}%
+   \renewcommand{\appendixpagename}{Annexes}%
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -135,9 +139,12 @@
 
 \tableofcontents
 
+
 \input{sujet}
-%\input{introduction}
-%\input{conclusion}
+
+\begin{appendices}
+\input{conventions}
+\end{appendices}
 
 
 \end{document}
