@@ -4,10 +4,23 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
     private GameObject weapon;
+    private GameObject aimingArm;
+
+    //Aim target
+    GameObject target; 
+    float speed = 1f;
 
     void Awake()
-    {
+    { 
+        this.aimingArm = GameObject.Find("Bip001 R UpperArm");
         this.weapon = GameObject.Find("BulletContainer");
+    }
+
+    void Start()
+    {
+        this.target = GameObject.Find("target");
+        int i;
+        aim();
     }
 
 	
@@ -79,5 +92,38 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    
+
+    void aim()
+    {
+        /*Vector3 targetDir = target.transform.position - aimingArm.transform.position;
+        float step = speed * Time.deltaTime;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
+        Debug.DrawRay(transform.position, newDir, Color.red);
+        aimingArm.transform.rotation = Quaternion.LookRotation(newDir);*/
+
+
+        /*Vector3 relativePos = target.transform.position - this.aimingArm.transform.position;
+        Debug.Log("target " + target.transform.position.ToString());
+        Debug.Log("arm " + this.aimingArm.transform.position);
+        Debug.Log("rela " + relativePos);
+        Quaternion rotation = Quaternion.LookRotation(relativePos);// * new Quaternion(0, 0, 0, 1);
+        Debug.Log(rotation.ToString());
+        this.aimingArm.transform.rotation = rotation;*/
+
+        //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.right, Time.deltaTime * 90f);
+        //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.up, Time.deltaTime * 45f);
+
+        Quaternion myQuat = Quaternion.Euler(aimingArm.transform.localEulerAngles);
+        Quaternion targetQuat = Quaternion.Euler(target.transform.localEulerAngles);
+
+        int i = 0;
+        while((i!= 1000) && (myQuat != targetQuat))
+        {
+            i++;
+            Debug.Log(i.ToString());
+            aimingArm.transform.localRotation = Quaternion.RotateTowards(myQuat, targetQuat, 10.0f);
+            myQuat = Quaternion.Euler(aimingArm.transform.localEulerAngles);
+        }
+    }
 }
+
