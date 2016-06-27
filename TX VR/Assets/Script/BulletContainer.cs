@@ -7,7 +7,7 @@ public class BulletContainer : MonoBehaviour {
 
     void Start()
     {
-        StartCoroutine(test());
+        //StartCoroutine(test());
     }
 
     IEnumerator test()

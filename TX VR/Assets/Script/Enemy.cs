@@ -19,8 +19,7 @@ public class Enemy : MonoBehaviour {
     void Start()
     {
         this.target = GameObject.Find("target");
-        int i;
-        aim();
+        //aim();
     }
 
 	
