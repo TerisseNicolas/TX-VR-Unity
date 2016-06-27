@@ -3,10 +3,13 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    private GameObject weapon;
+
+    void Awake()
+    {
+        this.weapon = GameObject.Find("BulletContainer");
+    }
+
 	
 	// Update is called once per frame
 	void Update ()
@@ -37,6 +40,7 @@ public class Enemy : MonoBehaviour {
 
     private void Fire(VibrationZoneType zone)
     {
+        this.weapon.GetComponent<BulletContainer>().shot();
         switch (zone)
         {
             case VibrationZoneType.calfR:
@@ -74,4 +78,6 @@ public class Enemy : MonoBehaviour {
                 break;
         }
     }
+
+    
 }
