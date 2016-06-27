@@ -1,0 +1,20 @@
+\chapter{Sujet} 
+\label{ch:sujet}
+
+\section{Description}
+
+Le but de cette TX est d'intégrer la sensation d’être touché lors d’expérience vidéo ludique utilisant un casque de réalité virtuelle. L'objectif est alors de coupler un dispositif haptique avec l'utilisation d'un casque de réalité virtuelle (HTC Vive), en faisant vibrer des capteurs posés à différents endroits sur le corps, pour reproduire la sensation de touché. \\
+Le résultat attendu est une démonstration des possibilités explicitées ci-dessus sous la forme d'une simulation de jeu FPS.
+
+\section{Entrées}
+
+La scène de jeu (l'environnement) ainsi que les différentes zones mobilisées dans cette expérimentation constituent l'entrée. Il a été défini que 11 capteurs seraient utilisés : mollet droit/gauche, cuisse droit/gauche, avant-bras droit/gauche, bras droit/gauche, buste, dos et tête.
+
+\section{Sorties}
+
+La sortie se résume en un message bluetooth à destination du récepteur Arduino associé aux capteurs. Trois types de messages sont à distinguer, afin de rendre le projet plus générique : 
+\begin{itemize}
+	\item Une demande de vibration à durée déterminée (par exemple, après un impact de balle)
+	\item Une demande de vibration à durée indéterminée (par exemple, en attendant une action précise
+	\item Un signal demandant l'arrêt d'une vibration précédemment envoyée
+\end{itemize}
