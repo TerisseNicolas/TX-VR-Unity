@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour {
 
     private GameObject weapon;
     private GameObject aimingArm;
+    private GameObject shotgun;
 
     //Aim target
     GameObject target; 
@@ -14,12 +15,13 @@ public class Enemy : MonoBehaviour {
     void Awake()
     { 
         this.aimingArm = GameObject.Find("Bip001 R UpperArm");
+        this.shotgun = GameObject.Find("Shotgun");
         this.weapon = GameObject.Find("BulletContainer");
+        this.target = GameObject.Find("target");
     }
 
     void Start()
     {
-        this.target = GameObject.Find("target");
         StartCoroutine(raiseArm());
         //aim();
     }
@@ -163,7 +165,7 @@ public class Enemy : MonoBehaviour {
         int i;
         for (i = 0; i <= angle; i++)
         {
-            this.aimingArm.transform.Rotate(-Vector3.forward * speed);
+            this.aimingArm.transform.Rotate(Vector3.back * speed);
             yield return new WaitForSeconds(0.005f);
         }
         yield return new WaitForSeconds(1f);
