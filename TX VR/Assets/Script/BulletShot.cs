@@ -3,11 +3,12 @@ using System.Collections;
 
 public class BulletShot : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+	public float damageCoefficient { get; private set; }
 
+    void Awake()
+    {
+        this.damageCoefficient = 1.0f;
+    }
     // Update is called once per frame
     void Update()
     {

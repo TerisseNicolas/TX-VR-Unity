@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VibratingZone : MonoBehaviour {
+public class VibratingZone : MonoBehaviour
+{
+    target target;
+    int damage = 10;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
+    void Start()
+    {
+        this.target = GameObject.Find("target").GetComponent<target>();
+    }
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-       Debug.Log(other.name);
+        if(other.name == "Bullet")
+        {
+            target.setLife(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
+        }
     }
 }

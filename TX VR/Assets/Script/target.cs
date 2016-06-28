@@ -3,31 +3,28 @@ using System.Collections;
 
 public class target : MonoBehaviour {
 
-    int life = 100;
+    float life;
 
-    BoxCollider headCollider;
-
-    // Use this for initialization
-    void Start() {
-        headCollider = GameObject.Find("Bip01_Head2").GetComponent<BoxCollider>();
+    void Awake()
+    {
+        this.life = 100;
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    public int getLife()
+    public float getLife()
     {
         return life;
     }
-    public void setLife(int newValue)
+    public void setLife(float damage)
     {
-        life -= newValue;
-        if(life <= 0)
+        this.life -= damage;
+        if (life <= 0)
         {
             Debug.Log("Killed");
             life = 0;
+        }
+        else
+        {
+            Debug.Log("New health : " + this.life.ToString());
         }
     }
 }

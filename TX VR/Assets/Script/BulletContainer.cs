@@ -5,19 +5,6 @@ public class BulletContainer : MonoBehaviour {
 
     public Transform bulletTransformPrefab;
 
-    void Start()
-    {
-        //StartCoroutine(test());
-    }
-
-    IEnumerator test()
-    {
-        for(;;)
-        {
-            shot();
-            yield return new WaitForSeconds(0.5f); 
-        }
-    }
     public void shot()
     {
         var bulletTransform = Instantiate(bulletTransformPrefab) as Transform;
@@ -26,8 +13,7 @@ public class BulletContainer : MonoBehaviour {
         if (anim_bullet != null)
         {
             anim_bullet.transform.SetParent(this.transform);
-            anim_bullet.transform.position = this.transform.position; // Camera.main.ScreenToWorldPoint(this.transform.position);
-            // anim_bullet.transform.rotation = this.transform.rotation;
+            anim_bullet.transform.position = this.transform.position;
         }
         else { Debug.Log("error"); }
 
