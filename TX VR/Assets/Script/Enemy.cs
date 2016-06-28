@@ -154,6 +154,7 @@ public class Enemy : MonoBehaviour {
             this.aimingArm.transform.Rotate(Vector3.forward * speed);
             yield return new WaitForSeconds(0.005f);
         }
+        this.shotgun.GetComponentInChildren<BulletContainer>().shot();
         yield return new WaitForSeconds(1f);
 
         //aim();
