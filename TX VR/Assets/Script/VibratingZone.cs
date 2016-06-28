@@ -15,7 +15,9 @@ public class VibratingZone : MonoBehaviour
     {
         if(other.name == "Bullet")
         {
-            target.setLife(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
+            if (target == null)
+                Debug.Log("target is null");
+            target.hurt(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
         }
     }
 }

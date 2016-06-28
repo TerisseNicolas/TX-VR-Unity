@@ -14,7 +14,8 @@ public class Target : MonoBehaviour {
     {
         return life;
     }
-    public void setLife(float damage)
+
+    public void hurt(float damage)
     {
         this.life -= damage;
         if (life <= 0)
