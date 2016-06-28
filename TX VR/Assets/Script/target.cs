@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class target : MonoBehaviour {
+public class Target : MonoBehaviour {
 
     float life;
 

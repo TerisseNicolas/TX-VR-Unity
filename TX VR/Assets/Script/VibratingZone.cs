@@ -3,12 +3,12 @@ using System.Collections;
 
 public class VibratingZone : MonoBehaviour
 {
-    target target;
+    Target target;
     int damage = 10;
 
     void Start()
     {
-        this.target = GameObject.Find("target").GetComponent<target>();
+        this.target = GameObject.Find("target").GetComponent<Target>();
     }
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
