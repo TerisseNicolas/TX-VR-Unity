@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    void aim()
+    void aim1()
     {
         /*Vector3 targetDir = target.transform.position - aimingArm.transform.position;
         float step = speed * Time.deltaTime;
@@ -112,8 +112,13 @@ public class Enemy : MonoBehaviour {
         this.aimingArm.transform.rotation = rotation;*/
 
         //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.right, Time.deltaTime * 90f);
-        //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.up, Time.deltaTime * 45f);
 
+        Vector3 targetDir = target.transform.position - aimingArm.transform.position;
+        Debug.Log(aimingArm.transform.rotation.eulerAngles.ToString());
+        float angle = AngleBet(this.aimingArm.transform.eulerAngles, targetDir);
+        //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.up, angle);
+
+        /*
         Quaternion myQuat = Quaternion.Euler(aimingArm.transform.localEulerAngles);
         Quaternion targetQuat = Quaternion.Euler(target.transform.localEulerAngles);
 
@@ -124,8 +129,20 @@ public class Enemy : MonoBehaviour {
             Debug.Log(i.ToString());
             aimingArm.transform.localRotation = Quaternion.RotateTowards(myQuat, targetQuat, 10.0f);
             myQuat = Quaternion.Euler(aimingArm.transform.localEulerAngles);
-        }
+        }*/
     }
+    void aim()
+    {
+        var rotate = Quaternion.LookRotation(target.transform.position - aimingArm.transform.position);
+        aimingArm.transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * 6.0f);
+    }
+            
+    public static float AngleBet(Vector3 from, Vector3 to)
+    {
+        return Mathf.Acos(Mathf.Clamp(Vector3.Dot(from.normalized, to.normalized), -1f, 1f)) * 57.29578f;
+    }
+
+
 
     IEnumerator raiseArm()
     {
@@ -136,6 +153,8 @@ public class Enemy : MonoBehaviour {
             yield return new WaitForSeconds(0.005f);
         }
         yield return new WaitForSeconds(1f);
+
+        //aim();
         StartCoroutine(lowerArm());
     }
 
