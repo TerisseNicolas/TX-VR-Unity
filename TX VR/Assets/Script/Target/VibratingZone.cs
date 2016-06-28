@@ -3,21 +3,19 @@ using System.Collections;
 
 public class VibratingZone : MonoBehaviour
 {
-    Target target;
+    LifeManager targetLife;
     int damage = 10;
 
     void Start()
     {
-        this.target = GameObject.Find("target").GetComponent<Target>();
+        this.targetLife = transform.root.GetComponentInChildren<LifeManager>();
     }
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
         if(other.name == "Bullet")
         {
-            if (target == null)
-                Debug.Log("target is null");
-            target.hurt(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
+            targetLife.hurt(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
         }
     }
 }

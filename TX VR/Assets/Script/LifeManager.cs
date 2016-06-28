@@ -1,14 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Target : MonoBehaviour {
+public class LifeManager : MonoBehaviour {
 
-    float life;
-
-    void Awake()
-    {
-        this.life = 100;
-    }
+    public float life = 100;
 
     public float getLife()
     {
