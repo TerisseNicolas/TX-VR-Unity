@@ -51,10 +51,11 @@ public class BluetoothManager : MonoBehaviour
 
     public static void send(VibrationZoneType zone, VibrationType vibrationType, int optionnalDuration = 0)
     {
-        string message = zone.ToString() + "@" + vibrationType.ToString();
+        //conventions: vibrationZone@vibrationType@duration (duration present only if vibrationType = 'limited'
+        string message = zone.ToString() + "@" + vibrationType.ToString() + "@";
         if (vibrationType == VibrationType.limited)
         {
-            message += "@" + optionnalDuration.ToString();
+            message += optionnalDuration.ToString();
         }
         sp.Write(message);
     }
