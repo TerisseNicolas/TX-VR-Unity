@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour {
 
     //Aim target
     GameObject target; 
-    float speed = 1f;
+    float speed = 4f;
+    int angle = 25;
 
     void Awake()
     { 
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour {
     void Start()
     {
         this.target = GameObject.Find("target");
+        StartCoroutine(raiseArm());
         //aim();
     }
 
@@ -123,6 +125,30 @@ public class Enemy : MonoBehaviour {
             aimingArm.transform.localRotation = Quaternion.RotateTowards(myQuat, targetQuat, 10.0f);
             myQuat = Quaternion.Euler(aimingArm.transform.localEulerAngles);
         }
+    }
+
+    IEnumerator raiseArm()
+    {
+        int i;
+        for(i=angle; i>=0; i--)
+        {
+            this.aimingArm.transform.Rotate(Vector3.forward * speed);
+            yield return new WaitForSeconds(0.005f);
+        }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(lowerArm());
+    }
+
+    IEnumerator lowerArm()
+    {
+        int i;
+        for (i = 0; i <= angle; i++)
+        {
+            this.aimingArm.transform.Rotate(-Vector3.forward * speed);
+            yield return new WaitForSeconds(0.005f);
+        }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(raiseArm());
     }
 }
 

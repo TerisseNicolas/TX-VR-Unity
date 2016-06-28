@@ -49,7 +49,7 @@ public class BluetoothManager : MonoBehaviour
         sp.Close();
     }
 
-    public static void send(VibratingZone zone, VibrationType vibrationType, int optionnalDuration = 0)
+    public static void send(VibrationZoneType zone, VibrationType vibrationType, int optionnalDuration = 0)
     {
         string message = zone.ToString() + "@" + vibrationType.ToString();
         if (vibrationType == VibrationType.limited)
