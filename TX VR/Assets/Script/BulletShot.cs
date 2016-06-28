@@ -8,7 +8,14 @@ public class BulletShot : MonoBehaviour {
     void Awake()
     {
         this.damageCoefficient = 1.0f;
+        SoundPlayer.Instance.playShot1();
     }
+
+    void Start()
+    {
+        Destroy(gameObject, 3);
+    }
+
     // Update is called once per frame
     void Update()
     {
