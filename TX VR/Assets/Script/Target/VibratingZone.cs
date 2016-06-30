@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class VibratingZone : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class VibratingZone : MonoBehaviour
         if(other.name == "Bullet")
         {
             targetLife.hurt(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
+            VibrationZoneType vibrationZoneType = (VibrationZoneType)Enum.Parse(typeof(VibrationZoneType), this.name.Split('_')[1]);
+            BluetoothManager.send(vibrationZoneType, VibrationType.limited, 1);
         }
     }
 }

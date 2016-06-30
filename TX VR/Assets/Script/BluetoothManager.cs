@@ -12,7 +12,7 @@ public class BluetoothManager : MonoBehaviour
 
     void Start()
     {
-        //OpenConnection();
+        OpenConnection();
     }
 
     public void OpenConnection()
@@ -57,6 +57,7 @@ public class BluetoothManager : MonoBehaviour
         {
             message += optionnalDuration.ToString();
         }
+        Debug.Log("Bluetooth: " + message);
         sp.Write(message);
     }
 }
