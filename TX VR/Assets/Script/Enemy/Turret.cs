@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Turret : MonoBehaviour {
 
-    private GameObject weapon;
+    private BulletContainer weapon;
 
     // Use this for initialization
     void Awake()
     {
-        this.weapon = GameObject.Find("BulletContainer_Turret");
+        this.weapon = GameObject.Find("BulletContainer_Turret").GetComponent<BulletContainer>();
     }
 
     void Start()
@@ -33,6 +33,6 @@ public class Turret : MonoBehaviour {
 
     // Update is called once per frame
     void shot () {
-        this.weapon.GetComponent<BulletContainer>().shot();
+        this.weapon.shot();
     }
 }
