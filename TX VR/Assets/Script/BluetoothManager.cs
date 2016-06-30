@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Threading;
 using System.Collections.Generic;
-
+using System.IO;
 using System.IO.Ports;
 
 public class BluetoothManager : MonoBehaviour
