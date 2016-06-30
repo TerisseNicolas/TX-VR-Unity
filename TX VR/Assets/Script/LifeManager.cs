@@ -17,6 +17,7 @@ public class LifeManager : MonoBehaviour {
         {
             Debug.Log("Killed");
             life = 0;
+            Destroy(gameObject);
         }
         else
         {
