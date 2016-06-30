@@ -1,9 +1,5 @@
 5.3.5f1:2.2.0.0
-<<<<<<< HEAD
-StandaloneWindows
-=======
 WebPlayer
->>>>>>> 68c567f154470c48fb0f515d94f6c9a048bc5725
 C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll
 C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
 C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
