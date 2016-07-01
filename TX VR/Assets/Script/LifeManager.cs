@@ -21,7 +21,7 @@ public class LifeManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("New health : " + this.life.ToString());
+            Debug.Log("New health of " + this.name + ": " + this.life.ToString());
         }
     }
 }
