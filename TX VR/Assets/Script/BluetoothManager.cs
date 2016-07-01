@@ -12,7 +12,7 @@ public class BluetoothManager : MonoBehaviour
 
     void Start()
     {
-        OpenConnection();
+        //OpenConnection();
     }
 
     public void OpenConnection()
