@@ -7,12 +7,12 @@ using System.IO.Ports;
 
 public class BluetoothManager : MonoBehaviour
 {
-    //public static SerialPort sp = new SerialPort("COM4", 9600, Parity.None, 8, StopBits.One);
-    public static SerialPort sp = new SerialPort("RFCOMM", 9600);
+    public static SerialPort sp = new SerialPort("COM5", 9600, Parity.None, 8, StopBits.One);
+    //public static SerialPort sp = new SerialPort("COM5", 9600);
 
     void Start()
     {
-        //OpenConnection();
+        OpenConnection();
     }
 
     public void OpenConnection()
