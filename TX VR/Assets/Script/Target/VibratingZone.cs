@@ -19,6 +19,12 @@ public class VibratingZone : MonoBehaviour
             targetLife.hurt(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
             VibrationZoneType vibrationZoneType = (VibrationZoneType)Enum.Parse(typeof(VibrationZoneType), this.name.Split('_')[1]);
             BluetoothManager.send(vibrationZoneType, VibrationType.limited, 1);
+            return;
+        }
+        if (other.name == "Wall")
+        {
+            VibrationZoneType vibrationZoneType = (VibrationZoneType)Enum.Parse(typeof(VibrationZoneType), this.name.Split('_')[1]);
+            BluetoothManager.send(vibrationZoneType, VibrationType.limited, 2);
         }
     }
 }

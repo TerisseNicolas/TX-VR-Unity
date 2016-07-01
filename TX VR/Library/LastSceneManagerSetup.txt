@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Pro_Western_Starter_Pack/scene/scene.unity
+=======
+- path: Assets/Scenes/testMoveScene.unity
+>>>>>>> 0a31a07955964509e1046d5b701996ed427bc443
   isLoaded: 1
   isActive: 1
