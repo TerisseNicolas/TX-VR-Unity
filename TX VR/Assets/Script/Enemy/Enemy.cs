@@ -1,37 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Enemy : MonoBehaviour {
 
     private GameObject weapon;
     private GameObject aimingArm;
-    private GameObject shotgun;
 
     //Aim target
     GameObject target; 
     float speed = 4f;
     int angle = 25;
 
-    void Awake()
-    { 
-       
-    }
-
     void Start()
     {
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
-        {
+        {         
             if (child.name == "Rifle")
             {
-                shotgun = child.gameObject;
-                break;
+                //Debug.Log(gameObject.name + "--------" + child.gameObject.name);
+                weapon = child.gameObject;
+            }
+            if (child.name == "Bip001 R UpperArm")
+            {
+                aimingArm = child.gameObject;
             }
         }
-        this.aimingArm = GameObject.Find("Bip001 R UpperArm");
-        this.weapon = GameObject.Find("BulletContainer");
+        //Only one target in the scene
         this.target = GameObject.Find("target");
-        StartCoroutine(raiseArm());
+
+
+        //StartCoroutine(raiseArm());
         //aim();
     }
 
@@ -63,9 +63,19 @@ public class Enemy : MonoBehaviour {
             Fire(VibrationZoneType.back);
     }
 
+    public void Fire()
+    {
+        Array values = Enum.GetValues(typeof(VibrationZoneType));
+        System.Random random = new System.Random();
+        VibrationZoneType zone = (VibrationZoneType) values.GetValue(random.Next(values.Length));
+        Fire(zone);
+    }
+
     private void Fire(VibrationZoneType zone)
     {
-        this.weapon.GetComponent<BulletContainer>().shot();
+        //Debug.Log(gameObject.name + "-------" + zone.ToString());
+
+        this.weapon.GetComponentInChildren<BulletContainer>().shot();
         switch (zone)
         {
             case VibrationZoneType.calfR:
@@ -124,9 +134,9 @@ public class Enemy : MonoBehaviour {
 
         //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.right, Time.deltaTime * 90f);
 
-        Vector3 targetDir = target.transform.position - aimingArm.transform.position;
+        /*Vector3 targetDir = target.transform.position - aimingArm.transform.position;
         Debug.Log(aimingArm.transform.rotation.eulerAngles.ToString());
-        float angle = AngleBet(this.aimingArm.transform.eulerAngles, targetDir);
+        float angle = AngleBet(this.aimingArm.transform.eulerAngles, targetDir);*/
         //aimingArm.transform.RotateAround(aimingArm.transform.position, transform.up, angle);
 
         /*
@@ -163,7 +173,7 @@ public class Enemy : MonoBehaviour {
             this.aimingArm.transform.Rotate(Vector3.forward * speed);
             yield return new WaitForSeconds(0.005f);
         }
-        this.shotgun.GetComponentInChildren<BulletContainer>().shot();
+        this.weapon.GetComponentInChildren<BulletContainer>().shot();
         yield return new WaitForSeconds(1f);
 
         //aim();

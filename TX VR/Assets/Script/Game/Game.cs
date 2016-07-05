@@ -2,28 +2,45 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Game : MonoBehaviour {
+public class Game : MonoBehaviour
+{
+    EnemyManager enemyManager;
+    GameObject target;
+    public bool gameEnd = false;
 
-    List<Enemy> enemyList;
-    int enemyCountInit = 6;
-    int enemyRemaining;
-
-    void Awake()
+    void Start()
     {
-        this.enemyRemaining = this.enemyCountInit;
+        this.enemyManager = gameObject.GetComponent<EnemyManager>();
+        this.target = GameObject.Find("target");
+        this.target.GetComponent<LifeManager>().DeathEvent += target_DeathEvent;
+        StartCoroutine(startGame());
     }
 
-	void Start ()
+   //Start the game
+    IEnumerator startGame()
     {
-        int i;
-        for (i=1; i<= enemyCountInit; i++)
+        yield return new WaitForSeconds(3f);
+        Debug.Log("Starting game ===========================");
+        StartCoroutine(this.enemyManager.startGame());
+        yield return StartCoroutine(endOfGameCheck());
+    }
+
+    //Infinite game loop
+    IEnumerator endOfGameCheck()
+    {
+        while(EnemyManager.enemyRemaining !=0 )
         {
-            enemyList.Add(GameObject.Find("CowBoy" + i.ToString()).GetComponent<Enemy>());
+            yield return new WaitForSeconds(1f);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+        //End of game Todo
+        Debug.Log("End of game============================");
+        this.gameEnd = true;
+    }
+
+    //When the player died
+    private void target_DeathEvent(object sender, System.EventArgs e)
+    {
+        Debug.Log("The player is dead ============================");
+    }
 }
