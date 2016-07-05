@@ -4,24 +4,48 @@ using System.Collections;
 public class moveSkeleton : MonoBehaviour {
 
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+    Animator animator;
+
+    void Start()
+    {
+        this.animator = gameObject.GetComponent<Animator>();
+    }
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) &&!this.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk01"))
         {
-            Vector3 pos = this.transform.position;
-            pos.x = pos.x + 0.5f;
-            this.transform.position = pos;
+            //this.animator.Stop();
+            this.animator.Play("Walk01");
+            //this.animator.CrossFade("Walk01", 0.5f);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkBack"))
         {
-            Vector3 pos = this.transform.position;
-            pos.x = pos.x - 0.5f;
-            this.transform.position = pos;
+            this.animator.Play("WalkBack");
+        }
+        if (Input.GetKey(KeyCode.RightArrow) && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkRight"))
+        {
+            this.animator.Play("WalkRight");
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkLeft"))
+        {
+            this.animator.Play("WalkLeft");
+        }
+
+        if ((Input.GetKeyUp(KeyCode.UpArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk01"))
+        {
+            this.animator.CrossFade("Idle", 0.2f);
+        }
+        if ((Input.GetKeyUp(KeyCode.DownArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkBack"))
+        {
+            this.animator.CrossFade("Idle", 0.2f);
+        }
+        if ((Input.GetKeyUp(KeyCode.RightArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkRight"))
+        {
+            this.animator.CrossFade("Idle", 0.2f);
+        }
+        if ((Input.GetKeyUp(KeyCode.LeftArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkLeft"))
+        {
+            this.animator.CrossFade("Idle", 0.2f);
         }
 
         foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
