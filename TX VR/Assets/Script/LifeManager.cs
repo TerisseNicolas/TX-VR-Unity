@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class LifeManager : MonoBehaviour {
-
+public class LifeManager : MonoBehaviour
+{
     public float life = 100;
+    public event EventHandler<EventArgs> DeathEvent;
 
     public float getLife()
     {
@@ -17,11 +19,14 @@ public class LifeManager : MonoBehaviour {
         {
             Debug.Log("Killed");
             life = 0;
-            Destroy(gameObject);
+            if (this.DeathEvent != null)
+            {
+                this.DeathEvent(this, new EventArgs {});
+            }
         }
         else
         {
-            Debug.Log("New health of " + this.name + ": " + this.life.ToString());
+            //Debug.Log("New health of " + this.name + ": " + this.life.ToString());
         }
     }
 }
