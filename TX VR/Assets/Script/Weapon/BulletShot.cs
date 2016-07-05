@@ -8,7 +8,7 @@ public class BulletShot : MonoBehaviour {
     void Awake()
     {
         this.damageCoefficient = 1.0f;
-        SoundPlayer.Instance.playShot1();
+        //SoundPlayer.Instance.playShot1();
     }
 
     void Start()

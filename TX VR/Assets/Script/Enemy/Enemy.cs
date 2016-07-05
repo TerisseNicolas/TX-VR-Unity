@@ -14,14 +14,23 @@ public class Enemy : MonoBehaviour {
 
     void Awake()
     { 
-        this.aimingArm = GameObject.Find("Bip001 R UpperArm");
-        this.shotgun = GameObject.Find("Shotgun");
-        this.weapon = GameObject.Find("BulletContainer");
-        this.target = GameObject.Find("target");
+       
     }
 
     void Start()
     {
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            if (child.name == "Rifle")
+            {
+                shotgun = child.gameObject;
+                break;
+            }
+        }
+        this.aimingArm = GameObject.Find("Bip001 R UpperArm");
+        this.weapon = GameObject.Find("BulletContainer");
+        this.target = GameObject.Find("target");
         StartCoroutine(raiseArm());
         //aim();
     }
