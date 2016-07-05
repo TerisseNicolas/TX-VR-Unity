@@ -2,28 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Game : MonoBehaviour {
+public class Game : MonoBehaviour
+{
+    EnemyManager enemyManager;
+    public bool gameEnd = false;
 
-    List<Enemy> enemyList;
-    int enemyCountInit = 6;
-    int enemyRemaining;
-
-    void Awake()
+    void Start()
     {
-        this.enemyRemaining = this.enemyCountInit;
+        this.enemyManager = gameObject.GetComponent<EnemyManager>();
+        StartCoroutine(startGame());
     }
 
-	void Start ()
+    //Start the game
+    IEnumerator startGame()
     {
-        int i;
-        for (i=1; i<= enemyCountInit; i++)
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(this.enemyManager.startGame());
+        yield return StartCoroutine(endOfGameCheck());
+    }
+
+    //Infinite game loop
+    IEnumerator endOfGameCheck()
+    {
+        while(EnemyManager.enemyRemaining !=0 )
         {
-            enemyList.Add(GameObject.Find("CowBoy" + i.ToString()).GetComponent<Enemy>());
+            yield return new WaitForSeconds(1f);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        this.gameEnd = true;
+    }
 }

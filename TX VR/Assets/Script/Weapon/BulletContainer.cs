@@ -6,6 +6,20 @@ public class BulletContainer : MonoBehaviour {
     //public Transform bulletTransformPrefab;
     public BulletShot bulletShotPrefab;
 
+    void Start()
+    {
+        StartCoroutine(test());
+    }
+
+    IEnumerator test()
+    {
+        for(;;)
+        {
+            shot();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     public void shot()
     {
         //var bulletTransform = Instantiate(bulletTransformPrefab) as Transform;
