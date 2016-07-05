@@ -44,6 +44,7 @@ public class EnemyManager : MonoBehaviour
         //Debug.Log("Killed ++++++++" + sender.ToString());
         GameObject enemyObject = ((LifeManager)sender).gameObject;
         enemyList.Remove(enemyObject.GetComponent<Enemy>());
+        enemyRemaining -= 1;
         Destroy(enemyObject);
         Score.increaseScore(10);
         //Debug.Log(enemyList.Count.ToString() + "-----------------");

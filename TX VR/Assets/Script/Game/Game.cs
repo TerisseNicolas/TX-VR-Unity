@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
     IEnumerator startGame()
     {
         yield return new WaitForSeconds(3f);
+        Debug.Log("Starting game ===========================");
         StartCoroutine(this.enemyManager.startGame());
         yield return StartCoroutine(endOfGameCheck());
     }
@@ -28,6 +29,9 @@ public class Game : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
+
+        //End of game Todo
+        Debug.Log("End of game============================");
         this.gameEnd = true;
     }
 }

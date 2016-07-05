@@ -6,6 +6,7 @@ public class LifeManager : MonoBehaviour
 {
     public float life = 100;
     public event EventHandler<EventArgs> DeathEvent;
+    bool killed = false;
 
     public float getLife()
     {
@@ -17,11 +18,12 @@ public class LifeManager : MonoBehaviour
         this.life -= damage;
         if (life <= 0)
         {
-            Debug.Log("Killed");
             life = 0;
-            if (this.DeathEvent != null)
+            if ((this.DeathEvent != null) && !killed)
             {
+                killed = true;
                 this.DeathEvent(this, new EventArgs {});
+                Debug.Log("Killed");
             }
         }
         else
