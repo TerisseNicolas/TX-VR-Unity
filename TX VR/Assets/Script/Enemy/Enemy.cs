@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour {
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {         
-            if (child.name == "Rifle")
+            if (child.name == "Pistol")
             {
                 //Debug.Log(gameObject.name + "--------" + child.gameObject.name);
                 weapon = child.gameObject;

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class EnemyManager : MonoBehaviour
 {
     List<Enemy> enemyList = new List<Enemy>();
-    public static int enemyCountInit = 6;
+    public static int enemyCountInit = 5;
     public static int enemyRemaining = enemyCountInit;
 
     void Start()
@@ -24,14 +25,35 @@ public class EnemyManager : MonoBehaviour
         float sleepingTime;
         System.Random random = new System.Random();
         int index;
+        Animator animator;
+        float length1 = 2f;
+        float length2 = 2f;
+
         while (EnemyManager.enemyRemaining != 0)
         {
             //Select an enemy
             index = random.Next(enemyList.Count);
 
             //Fire
+            animator = enemyList[index].gameObject.GetComponentInChildren<Animator>();
+            foreach(AnimationClip clip in AnimationUtility.GetAnimationClips(animator.gameObject))
+            {
+                if(clip.name == "EnemyStanding")
+                {
+                    length1 = clip.length;
+                }
+                else if (clip.name == "EnemyKneeling")
+                {
+                    length2 = clip.length;
+                }
+            }
+            animator.Play("EnemyStanding");
+            yield return new WaitForSeconds(length1);
             enemyList[index].Fire();
+            yield return new WaitForSeconds(length2);
+            enemyList[index].gameObject.GetComponentInChildren<Animator>().Play("EnemyKneeling");
 
+            //Between each cowboy action
             sleepingTime = random.Next(2, 6);
             yield return new WaitForSeconds(sleepingTime);
         }
