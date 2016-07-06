@@ -16,8 +16,13 @@ public class testsAnimations : MonoBehaviour {
 
     IEnumerator toto()
     {
-        yield return new WaitForSeconds(2);
-        gameObject.GetComponent<Animator>().Play("EnemyStanding");
+        for (;;)
+        {
+            yield return new WaitForSeconds(2);
+            gameObject.GetComponent<Animator>().Play("EnemyStanding");
+            yield return new WaitForSeconds(2);
+            gameObject.GetComponent<Animator>().Play("EnemyKneeling");
+        }
     }
 
 }
