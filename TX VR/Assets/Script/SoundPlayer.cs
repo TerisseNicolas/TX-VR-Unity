@@ -9,6 +9,7 @@ public class SoundPlayer : MonoBehaviour
 
     //Sound sources
     public AudioClip shot1;
+    public AudioClip impact1;
 
     void Start()
     {
@@ -29,5 +30,9 @@ public class SoundPlayer : MonoBehaviour
     public void playShot1()
     {
         MakeSound(shot1);
+    }
+    public void playImpact1()
+    {
+        MakeSound(impact1);
     }
 }
