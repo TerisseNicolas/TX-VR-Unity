@@ -4,7 +4,9 @@ using System.Collections;
 public class moveSkeleton : MonoBehaviour {
 
 
-    Animator animator;
+    private Animator animator;
+    public float speedFront = 0.5f;
+    public float speedSide = 0.5f;
 
     void Start()
     {
@@ -12,11 +14,13 @@ public class moveSkeleton : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+
+        //New animation
         if (Input.GetKey(KeyCode.UpArrow) &&!this.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk01"))
         {
             //this.animator.Stop();
             this.animator.Play("Walk01");
-            //this.animator.CrossFade("Walk01", 0.5f);
+            //this.animator.CrossFade("Walk01", 0.5f);            
         }
         if (Input.GetKey(KeyCode.DownArrow) && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkBack"))
         {
@@ -31,26 +35,43 @@ public class moveSkeleton : MonoBehaviour {
             this.animator.Play("WalkLeft");
         }
 
-        if ((Input.GetKeyUp(KeyCode.UpArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk01"))
+        //During the animation and a the end
+        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk01"))
         {
-            this.animator.CrossFade("Idle", 0.2f);
+            transform.position += Vector3.right * speedFront * Time.deltaTime;
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                this.animator.CrossFade("Idle", 0.2f);
+            } 
         }
-        if ((Input.GetKeyUp(KeyCode.DownArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkBack"))
+        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkBack"))
         {
-            this.animator.CrossFade("Idle", 0.2f);
+            transform.position += Vector3.left * speedFront * Time.deltaTime;
+            if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                this.animator.CrossFade("Idle", 0.2f);
+            }
         }
-        if ((Input.GetKeyUp(KeyCode.RightArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkRight"))
+        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkRight"))
         {
-            this.animator.CrossFade("Idle", 0.2f);
+            transform.position += -Vector3.forward * speedSide * Time.deltaTime;
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                this.animator.CrossFade("Idle", 0.2f);
+            }
         }
-        if ((Input.GetKeyUp(KeyCode.LeftArrow)) && this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkLeft"))
+        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("WalkLeft"))
         {
-            this.animator.CrossFade("Idle", 0.2f);
+            transform.position += Vector3.forward * speedSide * Time.deltaTime;
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                this.animator.CrossFade("Idle", 0.2f);
+            }
         }
 
         foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
         {
-            if (gameObj.name == "Wall")
+            if (gameObj.name.Contains("Wall"))
             {
                 float distance = Vector3.Distance(this.transform.position, gameObj.transform.position);
                 if (distance < 5)
