@@ -26,10 +26,10 @@ public class BulletShot : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name.Contains("Crate1") || col.gameObject.name.Contains("Barrel1") || col.gameObject.name.Contains("CityBuilding1"))
+        if (col.gameObject.name.Contains("Crate1") || col.gameObject.name.Contains("Barrel1") || col.gameObject.name.Contains("CityBuilding1") || col.gameObject.name.Contains("Wall"))
         {
             SoundPlayer.Instance.playImpact1();
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
