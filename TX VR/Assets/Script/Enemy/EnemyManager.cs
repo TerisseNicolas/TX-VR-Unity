@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 
+
 public class EnemyManager : MonoBehaviour
 {
     List<Enemy> enemyList = new List<Enemy>();
@@ -19,7 +20,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     public IEnumerator startGame()
     {
         float sleepingTime;
@@ -36,9 +36,10 @@ public class EnemyManager : MonoBehaviour
 
             //Fire
             animator = enemyList[index].gameObject.GetComponentInChildren<Animator>();
-            foreach(AnimationClip clip in AnimationUtility.GetAnimationClips(animator.gameObject))
+
+            foreach (AnimationClip clip in AnimationUtility.GetAnimationClips(animator.gameObject))
             {
-                if(clip.name == "EnemyStanding")
+                if (clip.name == "EnemyStanding")
                 {
                     length1 = clip.length;
                 }

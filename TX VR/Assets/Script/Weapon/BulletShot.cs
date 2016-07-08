@@ -29,6 +29,10 @@ public class BulletShot : MonoBehaviour
         if (col.gameObject.name.Contains("Crate1") || col.gameObject.name.Contains("Barrel1") || col.gameObject.name.Contains("CityBuilding1") || col.gameObject.name.Contains("Wall"))
         {
             SoundPlayer.Instance.playImpact1();
+            if (col.gameObject.name.Contains("Crate1"))
+            {
+                Destroy(col.gameObject);
+            }
         }
         Destroy(gameObject);
     }
