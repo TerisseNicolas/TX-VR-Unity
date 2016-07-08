@@ -5,6 +5,7 @@ public class Target : MonoBehaviour
 {
     private float speed = 4f;
     private int angle = 15;
+    private Vector3 newPos;
 
     //Initial Z rotation for shot : 75
 
@@ -18,6 +19,18 @@ public class Target : MonoBehaviour
 
         StartCoroutine(raiseArm());
         //StartCoroutine(test());        
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            gameObject.GetComponent<Animator>().Play("PlayerDown");
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            gameObject.GetComponent<Animator>().Play("PlayerUp");
+        }
     }
 
     IEnumerator test()
