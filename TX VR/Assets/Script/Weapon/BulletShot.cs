@@ -9,11 +9,12 @@ public class BulletShot : MonoBehaviour
     void Awake()
     {
         this.damageCoefficient = 1.0f;
-        SoundPlayer.Instance.playShot1();
+        
     }
 
     void Start()
     {
+        SoundPlayer.Instance.playShot1();
         Destroy(gameObject, 3);
     }
 
