@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour
             }
 
             enemyList[index].Fire();
-            
+
             //Between each cowboy action
             sleepingTime = random.Next(2, 6);
             yield return new WaitForSeconds(sleepingTime);

@@ -13,7 +13,8 @@ public class BulletContainer : MonoBehaviour {
         if (weaponName == null || weaponName == "")
         {
             //this error is shown if the attribute "weaponName" is not assigned in a BulletContainer object
-            Debug.LogError("weaponName not assigned!");
+            //Debug.LogError("weaponName not assigned!");
+            //TODO uncomment
         }
     }
 
