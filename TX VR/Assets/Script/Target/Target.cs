@@ -11,25 +11,39 @@ public class Target : MonoBehaviour
 
     private GameObject aimingArm;
     private BulletContainer shotgun;
+    private Animator animator;
+    private bool movingArm = false;
 
     void Start()
     {
         this.aimingArm = gameObject.transform.Find("Bip01/Bip01_Spine/Bip01_Spine1/Bip01_Spine2/Bip01_Spine4/Bip01_R_Clavicle/Bip01_R_UpperArm").gameObject;
         this.shotgun = gameObject.transform.Find("Bip01/Bip01_Spine/Bip01_Spine1/Bip01_Spine2/Bip01_Spine4/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Pistol").gameObject.GetComponentInChildren<BulletContainer>();
 
-        StartCoroutine(raiseArm());
-        //StartCoroutine(test());        
+        //StartCoroutine(raiseArm());
+        //StartCoroutine(test()); 
+
+        animator = gameObject.GetComponent<Animator>();
+        animator.enabled = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            gameObject.GetComponent<Animator>().Play("PlayerDown");
+            animator.enabled = true;
+            animator.Play("PlayerDown");
+            //animator.enabled = false;
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            gameObject.GetComponent<Animator>().Play("PlayerUp");
+            animator.enabled = true;
+            animator.Play("PlayerUp");
+            //animator.enabled = false;
+        }
+        if (Input.GetKeyDown(KeyCode.W) && !this.movingArm)
+        {
+            animator.enabled = false;
+            StartCoroutine(raiseArm());
         }
     }
 
@@ -44,6 +58,7 @@ public class Target : MonoBehaviour
 
     IEnumerator raiseArm()
     {
+        this.movingArm = true;
         int i;
         for (i = angle; i >= 0; i--)
         {
@@ -64,7 +79,8 @@ public class Target : MonoBehaviour
             this.aimingArm.transform.Rotate(Vector3.back * speed);
             yield return new WaitForSeconds(0.005f);
         }
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(raiseArm());
+        this.movingArm = false;
+        //yield return new WaitForSeconds(1f);
+        //StartCoroutine(raiseArm());
     }
 }

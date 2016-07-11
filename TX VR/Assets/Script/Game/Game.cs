@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 
 public class Game : MonoBehaviour
 {
@@ -29,7 +28,8 @@ public class Game : MonoBehaviour
     //Infinite game loop
     IEnumerator endOfGameCheck()
     {
-        while(EnemyManager.enemyRemaining !=0 )
+        yield return new WaitForSeconds(0f);
+        while (EnemyManager.enemyRemaining != 0)
         {
             yield return new WaitForSeconds(1f);
         }

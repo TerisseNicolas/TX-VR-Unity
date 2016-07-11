@@ -12,7 +12,9 @@ public class BulletContainer : MonoBehaviour {
         //StartCoroutine(test());
         if (weaponName == null || weaponName == "")
         {
-            Debug.LogError("weaponName not assigned!");
+            //this error is shown if the attribute "weaponName" is not assigned in a BulletContainer object
+            //Debug.LogError("weaponName not assigned!");
+            //TODO uncomment
         }
     }
 

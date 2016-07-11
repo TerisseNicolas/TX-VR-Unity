@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 
 
 public class EnemyManager : MonoBehaviour
@@ -9,6 +9,9 @@ public class EnemyManager : MonoBehaviour
     List<Enemy> enemyList = new List<Enemy>();
     public static int enemyCountInit = 5;
     public static int enemyRemaining = enemyCountInit;
+
+    Animator animator;
+    int index;
 
     void Start()
     {
@@ -24,10 +27,6 @@ public class EnemyManager : MonoBehaviour
     {
         float sleepingTime;
         System.Random random = new System.Random();
-        int index;
-        Animator animator;
-        float length1 = 2f;
-        float length2 = 2f;
 
         while (EnemyManager.enemyRemaining != 0)
         {
@@ -36,23 +35,21 @@ public class EnemyManager : MonoBehaviour
 
             //Fire
             animator = enemyList[index].gameObject.GetComponentInChildren<Animator>();
+            
 
-            foreach (AnimationClip clip in AnimationUtility.GetAnimationClips(animator.gameObject))
-            {
-                if (clip.name == "EnemyStanding")
-                {
-                    length1 = clip.length;
-                }
-                else if (clip.name == "EnemyKneeling")
-                {
-                    length2 = clip.length;
-                }
-            }
             animator.Play("EnemyStanding");
-            yield return new WaitForSeconds(length1);
+            yield return new WaitForSeconds(0.1f);
+            for (;;)
+            {
+                if (animator.GetCurrentAnimatorClipInfo(0).Length != 0 && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "EnemyStanding" && !animator.IsInTransition(0))
+                {
+                    yield return new WaitForSeconds(0.01f);
+                }
+                else
+                    break;
+            }
+
             enemyList[index].Fire();
-            yield return new WaitForSeconds(length2);
-            enemyList[index].gameObject.GetComponentInChildren<Animator>().Play("EnemyKneeling");
 
             //Between each cowboy action
             sleepingTime = random.Next(2, 6);
@@ -60,6 +57,25 @@ public class EnemyManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0f);
     }
+
+    IEnumerator doAnimations(string anim1, string anim2)
+    {
+        animator.Play(anim1);
+        yield return new WaitForSeconds(0.1f);
+        for (;;)
+        {
+            if (animator.GetCurrentAnimatorClipInfo(0).Length != 0)
+            {
+                Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == anim1);
+                yield return new WaitForSeconds(1);
+            }
+            else
+                break;
+        }
+
+        enemyList[index].Fire();
+    }
+    
 
     //When an enemy is killed
     private void EnemyManager_DeathEvent(object sender, System.EventArgs e)

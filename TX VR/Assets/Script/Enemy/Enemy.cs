@@ -75,6 +75,9 @@ public class Enemy : MonoBehaviour {
     {
         //Debug.Log(gameObject.name + "-------" + zone.ToString());
 
+        Transform zoneTransform = GameObject.Find("VibrationZone_" + zone.ToString()).transform;
+        weapon.transform.LookAt(zoneTransform);
+
         this.weapon.GetComponentInChildren<BulletContainer>().shot();
         switch (zone)
         {
