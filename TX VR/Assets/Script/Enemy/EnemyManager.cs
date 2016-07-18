@@ -10,6 +10,8 @@ public class EnemyManager : MonoBehaviour
     public static int enemyCountInit = 5;
     public static int enemyRemaining = enemyCountInit;
 
+    private LifeManager targetLife;
+
     Animator animator;
     int index;
 
@@ -21,6 +23,8 @@ public class EnemyManager : MonoBehaviour
             enemyList.Add(GameObject.Find("CowBoy" + i.ToString()).GetComponent<Enemy>());
             enemyList[i - 1].gameObject.GetComponent<LifeManager>().DeathEvent += EnemyManager_DeathEvent;
         }
+
+        this.targetLife = GameObject.Find("target").GetComponent<LifeManager>();
     }
 
     public IEnumerator startGame()
@@ -28,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         float sleepingTime;
         System.Random random = new System.Random();
 
-        while (EnemyManager.enemyRemaining != 0)
+        while (EnemyManager.enemyRemaining != 0 && this.targetLife.life > 0)
         {
             //Select an enemy
             index = random.Next(enemyList.Count);
