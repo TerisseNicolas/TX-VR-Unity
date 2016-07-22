@@ -28,7 +28,7 @@ public class BulletContainer : MonoBehaviour {
                 shot();
             }
         }
-        if (this.weaponName == "OtherName")//TODO: find this weapon
+        if (this.weaponName == "Automatic")//TODO: find this weapon
         {
             //possible to shoot continously by keeping "space" pressed
             if (Input.GetKey(KeyCode.Space))
