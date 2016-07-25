@@ -9,7 +9,7 @@ public class MazeGame : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        this.target = GameObject.Find("targetMaze");
+        this.target = GameObject.Find("target");
         this.target.GetComponent<LifeManager>().DeathEvent += target_DeathEvent;
         this.finalSphere = GameObject.Find("FinalSphere").GetComponent<FinalSphere>();
 

@@ -15,7 +15,7 @@ public class FinalSphere : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if ((col.gameObject.transform.root.name == "targetMaze") && (collisionHistory == false))
+        if ((col.gameObject.transform.root.name == "target") && (collisionHistory == false))
         {
             this.collisionHistory = true;
             this.collided = true;
