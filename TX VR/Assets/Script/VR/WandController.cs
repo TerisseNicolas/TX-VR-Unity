@@ -43,6 +43,7 @@ public class WandController : MonoBehaviour {
         if (gripButtonDown)
         {
             Debug.Log("GripDown was just pressed");
+            //TODO: reload?
         }
         if (gripButtonUp)
         {

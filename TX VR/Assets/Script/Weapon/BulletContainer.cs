@@ -7,14 +7,23 @@ public class BulletContainer : MonoBehaviour {
     public BulletShot bulletShotPrefab;
     public string weaponName;
 
+    private int bulletsCapacityStatic;  //constant
+    private int bulletsCapacityActive;  //modified when shot
+
     void Start()
     {
-        //StartCoroutine(test());
         if (weaponName == null || weaponName == "")
         {
             //this error is shown if the attribute "weaponName" is not assigned in a BulletContainer object
-            //Debug.LogError("weaponName not assigned!");
-            //TODO uncomment
+            Debug.LogError("weaponName not assigned!");
+        }
+        else if (this.weaponName == "Automatic")
+        {
+            this.bulletsCapacityStatic = this.bulletsCapacityActive = 50;
+        }
+        else
+        {
+            this.bulletsCapacityStatic = this.bulletsCapacityActive = 5;
         }
     }
 
@@ -28,7 +37,7 @@ public class BulletContainer : MonoBehaviour {
                 shot();
             }
         }
-        if (this.weaponName == "Automatic")//TODO: find this weapon
+        if (this.weaponName == "Automatic")
         {
             //possible to shoot continously by keeping "space" pressed
             if (Input.GetKey(KeyCode.Space))
@@ -38,19 +47,24 @@ public class BulletContainer : MonoBehaviour {
         }
 
     }
-
-    IEnumerator test()
+    
+    public void shot()
     {
-        for(;;)
+        if (this.bulletsCapacityActive > 0)
         {
-            shot();
-            yield return new WaitForSeconds(1f);
+            BulletShot clone = (BulletShot)Instantiate(bulletShotPrefab, this.transform.position, this.transform.rotation);
+            clone.gameObject.name = "Bullet";
+            this.bulletsCapacityActive--;
+        }
+        else
+        {
+            //TODO: add sound empty magazine
+            Debug.Log("Empty magazine");
         }
     }
 
-    public void shot()
+    public void reload()
     {
-        BulletShot clone = (BulletShot)Instantiate(bulletShotPrefab, this.transform.position, this.transform.rotation);
-        clone.gameObject.name = "Bullet";
+        this.bulletsCapacityActive = this.bulletsCapacityStatic;
     }
 }
