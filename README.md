@@ -8,6 +8,7 @@
 - associer un bouton au changement d'arme
 - associer un bouton au menu et avoir un écran menu : restart, end
 - ajouter un système de score et un timer + sauvegarde (car à la fête de la science faudrait que les gosses puissent se comparer entre eux, genre Archipel old)
+- gérer l'appui long sur le trigger (pour l'arme automatique)
 
 FEATURES :
 - ajouter les scripts de vibration sur les armes (car sur les trackers du Vive y a des vibrations) + les ajouter dans la liste des trucs vibrants
