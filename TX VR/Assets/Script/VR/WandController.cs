@@ -51,6 +51,7 @@ public class WandController : MonoBehaviour {
         if (triggerButtonDown)
         {
             Debug.Log("TriggerDown was just pressed");
+			GetComponentInChildren<BulletContainer> ().shot ();
         }
         if (triggerButtonUp)
         {
