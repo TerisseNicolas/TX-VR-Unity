@@ -18,7 +18,7 @@ public class Turret : MonoBehaviour {
 
     void Update()
     {
-        transform.Rotate(Vector3.forward * Time.deltaTime); // * 4);
+        transform.Rotate(Vector3.forward * Time.deltaTime *0); // No Rotation
     }
 
     IEnumerator shootingRoutine()

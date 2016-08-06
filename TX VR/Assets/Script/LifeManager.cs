@@ -8,6 +8,16 @@ public class LifeManager : MonoBehaviour
     public event EventHandler<EventArgs> DeathEvent;
     bool killed = false;
 
+    private HealthBar healthBar;
+
+    void Start()
+    {
+        if(gameObject.name.Contains("target"))
+        {
+            this.healthBar = GameObject.Find("Slider").GetComponent<HealthBar>();
+        }
+    }
+
     public float getLife()
     {
         return life;
@@ -29,6 +39,10 @@ public class LifeManager : MonoBehaviour
         else
         {
             //Debug.Log("New health of " + this.name + ": " + this.life.ToString());
+        }
+        if (gameObject.name.Contains("target"))
+        {
+            this.healthBar.updateValue(life);
         }
     }
 }
