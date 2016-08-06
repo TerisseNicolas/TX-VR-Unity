@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BulletContainer : MonoBehaviour {
 
-    //public Transform bulletTransformPrefab;
     public BulletShot bulletShotPrefab;
     public string weaponName;
 
