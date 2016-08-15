@@ -21,7 +21,6 @@ public class WelcomeMenu : MonoBehaviour
 
     void buttonShooterClicked()
     {
-        Debug.Log("clicked");
         SceneSupervisor.loadShooterScene();
     }
 

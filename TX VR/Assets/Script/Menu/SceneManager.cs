@@ -16,6 +16,6 @@ public class SceneSupervisor : MonoBehaviour
 
     public static void loadScoresScene()
     {
-        SceneManager.LoadScene("ScoresScene");
+        SceneManager.LoadScene("ScoreScene");
     }
 }
