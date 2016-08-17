@@ -6,9 +6,12 @@
 - les guns pointent un peu trop vers le haut quand on utilise le headset, faut les rotate, mais galère car pas testable à distance
 - ajouter sur l'écran une barre de vie et le chargeur de l'arme en cours (et associer à un bouton le rechargement de l'arme + bruit de recharge)
 - associer un bouton au changement d'arme
-- associer un bouton au menu et avoir un écran menu : restart, end
+- associer un bouton pour un ecran menu en cours de jeu : restart, end
 - ajouter un système de score et un timer + sauvegarde (car à la fête de la science faudrait que les gosses puissent se comparer entre eux, genre Archipel old)
 - gérer l'appui long sur le trigger (pour l'arme automatique)
 
 FEATURES :
 - ajouter les scripts de vibration sur les armes (car sur les trackers du Vive y a des vibrations) + les ajouter dans la liste des trucs vibrants
+- 
+TO BE CHECKED
+-tester les boutons de menuScene
