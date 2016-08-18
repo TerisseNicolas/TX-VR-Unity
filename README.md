@@ -12,6 +12,6 @@
 
 FEATURES :
 - ajouter les scripts de vibration sur les armes (car sur les trackers du Vive y a des vibrations) + les ajouter dans la liste des trucs vibrants
-- 
+
 TO BE CHECKED
 -tester les boutons de menuScene
