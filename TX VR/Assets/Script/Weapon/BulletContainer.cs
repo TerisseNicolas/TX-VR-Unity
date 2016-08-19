@@ -40,6 +40,7 @@ public class BulletContainer : MonoBehaviour {
         if ((this.chargerFilling > 0) && !this.shooting)
         {
             BulletShot clone = (BulletShot)Instantiate(bulletShotPrefab, this.transform.position, this.transform.rotation);
+            SoundPlayer.Instance.playShot1();
             clone.gameObject.name = "Bullet";
             cooling();
             this.chargerFilling--;

@@ -29,6 +29,7 @@ public class SoundPlayer : MonoBehaviour
         AudioSource.PlayClipAtPoint(originalClip, transform.position, 10f);
     }
 
+    //Todo multiple shot sounds (shotgun, pistol, automatic)
     public void playShot1()
     {
         MakeSound(shot1);
