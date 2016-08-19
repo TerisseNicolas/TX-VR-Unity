@@ -6,54 +6,43 @@ public class BulletContainer : MonoBehaviour {
     public BulletShot bulletShotPrefab;
     public string weaponName;
 
-    private int bulletsCapacityStatic;  //constant
-    private int bulletsCapacityActive;  //modified when shot
+    public float reloadTime = 3f;
+    public float fireRate = 1f;
+    public int chargerCapacity = 6;
+    public int chargerFilling;
+    public bool automatic = false;
+
+    private bool shooting = false;
+    private bool reloading = false;
 
     void Start()
     {
         if (weaponName == null || weaponName == "")
         {
-            //this error is shown if the attribute "weaponName" is not assigned in a BulletContainer object
             Debug.LogError("weaponName not assigned!");
         }
-        else if (this.weaponName == "Automatic")
+        else if (gameObject.name.Contains("Automatic"))
         {
-            this.bulletsCapacityStatic = this.bulletsCapacityActive = 50;
+            this.automatic = true;
+            this.chargerCapacity = 30;
+            this.fireRate = 0.3f;
         }
-        else
+        else if (gameObject.name.Contains("shotgun"))
         {
-            this.bulletsCapacityStatic = this.bulletsCapacityActive = 5;
+            this.reloadTime = 3f;
+            this.chargerCapacity = 2;
         }
-    }
-
-    void Update()
-    {
-        if (this.weaponName == "Pistol" || this.weaponName == "Shotgun")
-        {
-            //only one shot at the same time
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                shot();
-            }
-        }
-        if (this.weaponName == "Automatic")
-        {
-            //possible to shoot continously by keeping "space" pressed
-            if (Input.GetKey(KeyCode.Space))
-            {
-                shot();
-            }
-        }
-
+        this.chargerFilling = chargerCapacity;
     }
     
     public void shot()
     {
-        if (this.bulletsCapacityActive > 0)
+        if ((this.chargerFilling > 0) && !this.shooting)
         {
             BulletShot clone = (BulletShot)Instantiate(bulletShotPrefab, this.transform.position, this.transform.rotation);
             clone.gameObject.name = "Bullet";
-            this.bulletsCapacityActive--;
+            cooling();
+            this.chargerFilling--;
         }
         else
         {
@@ -62,8 +51,21 @@ public class BulletContainer : MonoBehaviour {
         }
     }
 
-    public void reload()
+    public IEnumerator reload()
     {
-        this.bulletsCapacityActive = this.bulletsCapacityStatic;
+        if(!this.reloading)
+        {
+            this.reloading = true;
+            yield return new WaitForSeconds(this.reloadTime);
+            this.chargerFilling = this.chargerCapacity;
+            this.reloading = false;
+        }        
+    }
+
+    private IEnumerator cooling()
+    {
+        this.shooting = true;
+        yield return new WaitForSeconds(this.fireRate);
+        this.shooting = false;
     }
 }

@@ -4,8 +4,8 @@ using System.Collections;
 public class testCowboy : MonoBehaviour {
 
     private GameObject weapon;
-    private GameObject aimingArm;
-    private GameObject target;
+    //private GameObject aimingArm;
+    //private GameObject target;
     private GameObject hand;
 
 
@@ -19,7 +19,7 @@ public class testCowboy : MonoBehaviour {
             }
             if (child.name == "Bip001 R UpperArm")
             {
-                aimingArm = child.gameObject;
+                //aimingArm = child.gameObject;
             }
             if (child.name == "Bip001 R Hand")
             {
@@ -28,7 +28,7 @@ public class testCowboy : MonoBehaviour {
             
 
         }
-        this.target = GameObject.Find("target");
+        //this.target = GameObject.Find("target");
 
         //aiming arm points at target
 

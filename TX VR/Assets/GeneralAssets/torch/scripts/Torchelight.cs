@@ -10,9 +10,12 @@ public class Torchelight : MonoBehaviour {
 	public GameObject Fumee;
 	public float MaxLightIntensity;
 	public float IntensityLight;
-	
 
-	void Start () {
+
+    void Start()
+    {
+        Debug.Log("TODO : uncomment");
+    }/*
 		TorchLight.GetComponent<Light>().intensity=IntensityLight;
 		MainFlame.GetComponent<ParticleSystem>().emissionRate=IntensityLight*20f;
 		BaseFlame.GetComponent<ParticleSystem>().emissionRate=IntensityLight*15f;	
@@ -34,4 +37,5 @@ public class Torchelight : MonoBehaviour {
 		Fumee.GetComponent<ParticleSystem>().emissionRate=IntensityLight*12f;		
 
 	}
+    */
 }

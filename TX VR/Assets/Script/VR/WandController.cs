@@ -8,13 +8,10 @@ public class WandController : MonoBehaviour {
     private Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
     private bool gripButtonDown = false;
     private bool gripButtonUp= false;
-    private bool gripButtonPressed= false;
-
 
     private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     private bool triggerButtonDown = false;
     private bool triggerButtonUp = false;
-    private bool triggerButtonPressed = false;
 
     private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int) trackedObject.index);  } }
     private SteamVR_TrackedObject trackedObject;
@@ -34,11 +31,9 @@ public class WandController : MonoBehaviour {
 
         gripButtonDown = controller.GetPressDown(gripButton);
         gripButtonUp = controller.GetPressUp(gripButton);
-        gripButtonPressed= controller.GetPress(gripButton);
 
         triggerButtonDown = controller.GetPressDown(triggerButton);
         triggerButtonUp = controller.GetPressUp(triggerButton);
-        triggerButtonPressed = controller.GetPress(triggerButton);
 
         if (gripButtonDown)
         {
