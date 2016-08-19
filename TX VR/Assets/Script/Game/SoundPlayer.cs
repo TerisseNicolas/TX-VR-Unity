@@ -10,6 +10,8 @@ public class SoundPlayer : MonoBehaviour
     //Sound sources
     public AudioClip shot1;
     public AudioClip impact1;
+    public AudioClip reload1;
+    public AudioClip dryFireGun1;
 
     void Start()
     {
@@ -34,5 +36,13 @@ public class SoundPlayer : MonoBehaviour
     public void playImpact1()
     {
         MakeSound(impact1);
+    }
+    public void playReload1()
+    {
+        MakeSound(reload1);
+    }
+    public void playDry1()
+    {
+        MakeSound(dryFireGun1);
     }
 }

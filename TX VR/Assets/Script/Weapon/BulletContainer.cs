@@ -46,8 +46,7 @@ public class BulletContainer : MonoBehaviour {
         }
         else
         {
-            //TODO: add sound empty magazine
-            Debug.Log("Empty magazine");
+            SoundPlayer.Instance.playDry1();
         }
     }
 
@@ -56,6 +55,7 @@ public class BulletContainer : MonoBehaviour {
         if(!this.reloading)
         {
             this.reloading = true;
+            SoundPlayer.Instance.playReload1();
             yield return new WaitForSeconds(this.reloadTime);
             this.chargerFilling = this.chargerCapacity;
             this.reloading = false;
