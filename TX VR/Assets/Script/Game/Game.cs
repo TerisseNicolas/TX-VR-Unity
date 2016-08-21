@@ -27,7 +27,7 @@ public class Game : MonoBehaviour
    //Start the game
     IEnumerator startGame()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(gameTimer());
         Debug.Log("Starting game ===========================");
         StartCoroutine(this.enemyManager.startGame());

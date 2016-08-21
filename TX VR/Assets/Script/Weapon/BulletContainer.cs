@@ -33,6 +33,20 @@ public class BulletContainer : MonoBehaviour {
             this.chargerCapacity = 2;
         }
         this.chargerFilling = chargerCapacity;
+
+        //StartCoroutine(test());
+    }
+
+    //To be deleted
+    IEnumerator test()
+    {
+        for(;;)
+        {
+            yield return new WaitForSeconds(0.2f);
+            shot();
+            this.chargerFilling = chargerCapacity;
+            
+        }
     }
     
     public void shot()

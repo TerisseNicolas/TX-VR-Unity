@@ -21,6 +21,7 @@ public class SoundPlayer : MonoBehaviour
             Debug.LogError("Multiple instances of SoundManager!");
         }
         Instance = this;
+        Debug.Log("ok");
     }
 
 
