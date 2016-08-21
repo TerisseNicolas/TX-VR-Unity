@@ -1,6 +1,5 @@
 - les armes sont trop loin des mains quand on utilise le headset, faudrait trouver un moyen de modifier leur placement (voir les scripts trackerObjects et wand)
 - les flingues étaient trop gros donc je les ai rétréci, mais du coup faut adapter la taille des balles + accélérer la vitesse des balles
-- les balles partent pas droit
 - laser : faire pointer vers là où tirera le flingue
 - les guns pointent un peu trop vers le haut quand on utilise le headset, faut les rotate, mais galère car pas testable à distance
 - ajouter un système sauvegarde (necessité de saisir un pseudo)
@@ -18,6 +17,7 @@ TO BE CHECKED
 - ajouter les sons de tirs (fonction shot() ?)
 - ajouter un système de timer
 - ajouter un système de score
+- les balles partent pas droit
 
 DELETED
 - ajouter sur l'écran le chargeur de l'arme en cours
