@@ -3,7 +3,7 @@
 - les balles partent pas droit
 - laser : faire pointer vers là où tirera le flingue
 - les guns pointent un peu trop vers le haut quand on utilise le headset, faut les rotate, mais galère car pas testable à distance
-- ajouter un système de score + sauvegarde (car à la fête de la science faudrait que les gosses puissent se comparer entre eux, genre Archipel old)
+- ajouter un système sauvegarde (necessité de saisir un pseudo)
 
 FEATURES :
 - ajouter les scripts de vibration sur les armes (car sur les trackers du Vive y a des vibrations) + les ajouter dans la liste des trucs vibrants
@@ -17,6 +17,7 @@ TO BE CHECKED
 - associer un bouton au changement d'arme
 - ajouter les sons de tirs (fonction shot() ?)
 - ajouter un système de timer
+- ajouter un système de score
 
 DELETED
 - ajouter sur l'écran le chargeur de l'arme en cours
