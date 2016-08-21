@@ -15,7 +15,9 @@ public class EnemyBodyPart : MonoBehaviour {
     {
         if (other.name == "Bullet")
         {
-            parentLife.hurt(this.damage * other.GetComponent<BulletShot>().damageCoefficient);
+            float points = this.damage * other.GetComponent<BulletShot>().damageCoefficient;
+            parentLife.hurt(points);
+            Score.increaseScore((int)points);
         }
     }
 }
